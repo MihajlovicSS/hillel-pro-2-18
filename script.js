@@ -117,10 +117,11 @@ function deleteContact(id, row){
     TableAPI.delete(id)
     .then(() => {
         deleteRow(row)
-        contactList.splice((contactList.indexOf(findContactById(id), 1)))
+        const idInList = contactList.indexOf(findContactById(id))
+        contactList.splice(idInList, 1)
         console.log(contactList)
     })
-    .catch(() => {
+    .catch((error) => {
         showError(error)
     })
 }
@@ -132,7 +133,7 @@ function createContact(contact){
             contactList.push(contact)
             console.log(contactList)
         })
-        .catch(() => {
+        .catch((error) => {
             showError(error)
         })
 }
@@ -145,7 +146,7 @@ function updateContact(id, newContact){
             replaceContactRow(id, newContact)
             console.log(contactList)
         })
-        .catch(() => {
+        .catch((error) => {
             showError(error)
         })
 }
